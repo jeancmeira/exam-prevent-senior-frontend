@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare var $: any
+
 @Component({
   selector: 'app-log-manual',
   templateUrl: './log-manual.component.html',
@@ -10,6 +12,10 @@ export class LogManualComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+  
+  onClick() {
+  	$("#myModal").modal(); 
   }
 
 }

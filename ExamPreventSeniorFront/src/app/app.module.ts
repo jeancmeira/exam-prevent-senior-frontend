@@ -6,6 +6,7 @@ import { LogManualComponent } from './log-manual/log-manual.component';
 import { LogArquivoComponent } from './log-arquivo/log-arquivo.component';
 import { BuscaLogComponent } from './busca-log/busca-log.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

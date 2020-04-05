@@ -11,7 +11,7 @@ export class LogArquivoComponent implements OnInit {
 
   ngOnInit() {
 	$(".custom-file-input").on("change", function() {
-	  var fileName = $(this).val();
+	  var fileName = $(this).val().toString();
 	  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 	});
   }

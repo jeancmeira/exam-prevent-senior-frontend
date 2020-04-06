@@ -10,7 +10,7 @@ declare var validateIfIsNumber: any
 declare var formatDateTime: any
 declare var convertToDate: any
 declare var showErrorMessage: any
-
+declare var convertToIsoDate: any
 
 @Component({
   selector: 'app-log-manual',
@@ -100,7 +100,7 @@ export class LogManualComponent implements OnInit {
 	this.logService.save(this.record).subscribe(
 		data => {
 		  $("#myModal").modal("hide");
-  		   this.listAll();
+  		   this.doSearch();
    
     }
 		, error => {
@@ -138,7 +138,7 @@ export class LogManualComponent implements OnInit {
 	this.record = record;  
 
 	this.ip = this.record.ip;
-	this.date = formatDateTime(this.record.date);
+	this.date = formatDateTime(convertToIsoDate(this.record.date));
 	this.request = this.record.request;
 	this.status = this.record.status.toString();
 	this.userAgent = this.record.userAgent;
@@ -152,7 +152,7 @@ export class LogManualComponent implements OnInit {
 	this.logService.delete(this.record).subscribe(
 		data => {
 		  $("#myModal").modal("hide");
-  		   this.listAll();
+  		   this.doSearch();
    
     }
 		, error => {

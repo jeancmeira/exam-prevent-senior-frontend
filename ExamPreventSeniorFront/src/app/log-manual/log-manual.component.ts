@@ -8,6 +8,7 @@ declare var $: any
 declare var validateDateTime: any
 declare var validateIfIsEmpty: any
 declare var validateIfIsNumber: any
+declare var formatDateTime: any
 
 @Component({
   selector: 'app-log-manual',
@@ -105,7 +106,7 @@ export class LogManualComponent implements OnInit {
 	this.record = record;  
 
 	this.ip = this.record.ip;
-	this.date = this.record.date.toDateString();
+	this.date = formatDateTime(this.record.date);
 	this.request = this.record.request;
 	this.status = this.record.status.toString();
 	this.userAgent = this.record.userAgent;

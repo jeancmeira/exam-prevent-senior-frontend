@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { LogService } from '../log.service';
+import { Log } from '../log';
+import { Result } from '../result';
+
 
 declare var $: any
 declare var validateDateTime: any
@@ -12,15 +16,26 @@ declare var validateIfIsNumber: any
 })
 export class LogManualComponent implements OnInit {
 
-  public ip: string = "";
-  public date: string = "";  	
-  public request: string = "";
-  public status: string = "";
-  public userAgent: string = "";
+  public ip = '';
+  public date = '';
+  public request = '';
+  public status = '';
+  public userAgent = '';
 
-  constructor() { }
+  
+  public totalPages = 0;
+
+  public page = 1;
+
+  public records: Log[];
+
+
+  constructor(private logService: LogService) {
+
+  }
 
   ngOnInit() {
+  	this.listAll();
   }
   
   save() {
@@ -88,5 +103,41 @@ export class LogManualComponent implements OnInit {
   onClick() {
   	$("#myModal").modal(); 
   }
+
+  listAll() {
+	 this.totalPages = 0;
+	 this.page = 1;
+	 this.doSearch();
+
+  }
+
+   previousPage(){
+	if (this.page < this.totalPages) {
+		this.page++;
+		this.doSearch();
+	}
+   }
+
+   nextPage() {
+	if (this.page > 1) {
+		this.page--;
+		this.doSearch();
+	}
+   }
+
+   private doSearch() {
+		this.records = [];
+
+		this.logService.listAll(this.page).subscribe(
+		data => {
+		this.records = data.records;
+		this.totalPages = data.totalPages;
+		}
+		, error => {
+			alert(error.status + ' - ' + error.message);
+		}
+	);
+   }
+
 
 }

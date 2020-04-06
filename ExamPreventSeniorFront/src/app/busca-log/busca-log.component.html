@@ -62,10 +62,11 @@
  
  <br/>
   
- <div class="row">
+ <div class="row" *ngIf="totalPages > 0">
   <div class="col-sm-1"><button class="page-link btn-block"> Anterior </button></div>
-  <div class="col-sm-1" style="text-align: center;"><span>1 de 10</span></div>
+  <div class="col-sm-1" style="text-align: center;"><span>1 de {{totalPages}}</span></div>
   <div class="col-sm-1"><button class="page-link btn-block"> Proximo </button></div>
 </div>
+
   
 <br/>

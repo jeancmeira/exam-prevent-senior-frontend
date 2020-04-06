@@ -18,6 +18,8 @@ export class BuscaLogComponent implements OnInit {
   public startDate = '';
   public endDate = '';
 
+  public totalPages = 0;
+
   public records: Log[];
 
   constructor(private logService: LogService) {
@@ -56,7 +58,8 @@ export class BuscaLogComponent implements OnInit {
 
     this.logService.search('', new Date(), new Date()).subscribe(
      data => {
-       this.records = data.records;
+	   this.records = data.records;
+	   this.totalPages = data.totalPages;
      }
      , error => {
        alert(error.status + ' - ' + error.message);

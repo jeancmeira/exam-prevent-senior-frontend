@@ -149,7 +149,16 @@ export class LogManualComponent implements OnInit {
   delete(record: Log) {
 	this.record = record;  
 
-	alert(this.record.id);
+	this.logService.delete(this.record).subscribe(
+		data => {
+		  $("#myModal").modal("hide");
+  		   this.listAll();
+   
+    }
+		, error => {
+			showErrorMessage(error.status + ' - ' + error.message);
+	});
+
   }
 
   listAll() {

@@ -9,6 +9,8 @@ declare var validateDateTime: any
 declare var validateIfIsEmpty: any
 declare var validateIfIsNumber: any
 declare var formatDateTime: any
+declare var convertToDate: any
+
 
 @Component({
   selector: 'app-log-manual',

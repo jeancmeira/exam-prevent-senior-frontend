@@ -24,6 +24,8 @@ export class LogManualComponent implements OnInit {
   }
   
   save() {
+  	var hasError = false;
+  
   	 $("#ip").removeClass("is-invalid");
 	 $("#request").removeClass("is-invalid");
 	 $("#status").removeClass("is-invalid");
@@ -31,34 +33,45 @@ export class LogManualComponent implements OnInit {
 	 $("#userAgent").removeClass("is-invalid");
   
   	 if (validateIfIsEmpty(this.ip)) {
+  	 	 hasError = true;
 	  	 $("#ip").addClass("is-invalid");
 	 }
 
   	 if (validateIfIsEmpty(this.request)) {
+  	 	 hasError = true;
 	  	 $("#request").addClass("is-invalid");
 	 }
 
   	 if (validateIfIsEmpty(this.status)) {
+  	 	hasError = true;
 	  	 $("#status").addClass("is-invalid");
 	 } else {
 	  	 if (!validateIfIsNumber(this.status)) {
+	  	 	 hasError = true;
 		  	 $("#status").addClass("is-invalid");
 		 } 
 	 }
 
   	 if (validateIfIsEmpty(this.date)) {
+  	 	 hasError = true;
 	  	 $("#date").addClass("is-invalid");
 	 } else {
 	  	 if (!validateDateTime(this.date)) {
+	  	 	 hasError = true;
 		  	 $("#date").addClass("is-invalid");
 		 } 
 	 }
 	 
 	 if (validateIfIsEmpty(this.userAgent)) {
+	 	 hasError = true;
 	  	 $("#userAgent").addClass("is-invalid");
 	 }
 	
-
+	if (hasError == true) {
+		return;
+	}
+	
+	$("#myModal").modal("hide");
 	  
   }	
   

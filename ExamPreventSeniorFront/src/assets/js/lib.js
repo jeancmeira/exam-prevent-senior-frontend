@@ -119,4 +119,18 @@ function convertToDate(value) {
 
 }
 
+function showMessage(message) {
+ $("#divMessage").addClass("alert-success");
+ $("#divMessage").removeClass("alert-danger");
+ $("#divMessage").html(message);
+ $("#modalMessage").modal();
+}
+
+function showErrorMessage(message) {
+ $("#divMessage").removeClass("alert-success");
+ $("#divMessage").addClass("alert-danger");
+ $("#divMessage").html(message);
+ $("#modalMessage").modal();
+}
+
 

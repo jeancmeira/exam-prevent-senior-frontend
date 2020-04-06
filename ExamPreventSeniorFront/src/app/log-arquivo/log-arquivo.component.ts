@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LogService } from '../log.service';
 
 declare var $: any
+declare var showMessage: any
+declare var showErrorMessage: any
 
 @Component({
   selector: 'app-log-arquivo',
@@ -16,17 +18,18 @@ export class LogArquivoComponent implements OnInit {
 
   public send() {
     if ($('input[type=file]')[0].files.length == 0) {
-        return alert('Favor informar arquivo.');      
+        showErrorMessage('Favor informar arquivo.');
+        return;      
     }
 
     let file = $('input[type=file]')[0].files[0];
 
 		this.logService.listAll(file).subscribe(
 		data => {
-      alert('Arquivo enviado com sucesso.');   
+      showMessage('Arquivo enviado com sucesso.');   
     }
 		, error => {
-			alert(error.status + ' - ' + error.message);
+			showErrorMessage(error.status + ' - ' + error.message);
 		});
 
 

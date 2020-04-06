@@ -51,34 +51,7 @@ export class LogService {
   }
 
   public listAllAggregation(page: number):Observable<Result<LogAggregation>>  {
-    const ret = new Observable<Result<LogAggregation>>((observer) => {
-
-      let result = new Result<LogAggregation>();
-
-      const list = new Array<LogAggregation>();
-      result.records = list;
-      result.totalPages = 1;
-
-      const logAggregation = new LogAggregation();
-      logAggregation.ip = '127.10.10.3';
-      logAggregation.userAgent = 'userAgent yyy';
-      logAggregation.hour = 10;
-      logAggregation.total = 100;
-      
-      list.push(logAggregation);
-
-      observer.next(result);
-      observer.complete();
-
-
-      return {
-        unsubscribe() {
-
-        }
-      };
-    });
-
-    return ret;
+    return this.http.get<Result<LogAggregation>>('http://localhost:8080/log-aggregation?page=' + page);
   }
 
   public addLogs(file: any):Observable<boolean> {

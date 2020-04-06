@@ -30,18 +30,18 @@ export class DashboardComponent implements OnInit {
   }
 
 
-     previousPage(){
-      if (this.page < this.totalPages) {
-        this.page++;
-        this.doSearch();
-      }
+  nextPage(){
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.doSearch();
+    }
    }
 
-   nextPage() {
-      if (this.page > 1) {
-        this.page--;
-        this.doSearch();
-      }
+   previousPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.doSearch();
+    }
    }
 
    private doSearch() {

@@ -4,6 +4,8 @@ import {Log} from './log';
 import {LogAggregation} from './log-aggregation';
 import {Result} from './result';
 
+declare var $: any
+
 @Injectable({
   providedIn: 'root'
 })
@@ -104,6 +106,33 @@ export class LogService {
     });
 
     return ret;
+  }
+
+  public addLogs(file: any):Observable<boolean> {
+    var formData = new FormData();
+    formData.append('file', file);
+
+    /*
+     this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
+    */
+
+    const ret = new Observable<boolean>((observer) => {
+
+      observer.next(true);
+
+      return {
+        unsubscribe() {
+
+        }
+      };
+    });
+
+    return ret;
+
+    
   }
 
 

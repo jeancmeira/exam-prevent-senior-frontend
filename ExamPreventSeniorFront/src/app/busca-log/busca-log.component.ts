@@ -30,12 +30,19 @@ export class BuscaLogComponent implements OnInit {
 
   	 if (validateIfIsEmpty(this.startDate)) {
 	  	 $("#startDate").addClass("is-invalid");
-	 } 
+	 } else {
+	  	 if (!validateDateTime(this.startDate)) {
+		  	 $("#startDate").addClass("is-invalid");
+		 } 
+	 }
 
 	 if (validateIfIsEmpty(this.endDate)) {
 	  	 $("#endDate").addClass("is-invalid");
+	 } else {
+		 if (!validateDateTime(this.endDate)) {
+		  	 $("#endDate").addClass("is-invalid");
+		 } 
 	 } 
-	 
 	  
   }	
 }

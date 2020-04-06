@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LogService } from '../log.service';
 import { Log } from '../log';
-import { Result } from '../result';
 
 
 declare var $: any
@@ -10,6 +9,7 @@ declare var validateIfIsEmpty: any
 declare var validateIfIsNumber: any
 declare var formatDateTime: any
 declare var convertToDate: any
+declare var showErrorMessage: any
 
 
 @Component({
@@ -104,13 +104,19 @@ export class LogManualComponent implements OnInit {
    
     }
 		, error => {
-			alert(error.status + ' - ' + error.message);
+			showErrorMessage(error.status + ' - ' + error.message);
 	});
 	  
   }	
 
   add() {
 	this.record = new Log();
+
+  	 $("#ip").removeClass("is-invalid");
+	 $("#request").removeClass("is-invalid");
+	 $("#status").removeClass("is-invalid");
+	 $("#date").removeClass("is-invalid");
+	 $("#userAgent").removeClass("is-invalid");
 
 	this.ip = "";
 	this.date = "";  	
@@ -122,6 +128,13 @@ export class LogManualComponent implements OnInit {
   }
   
   update(record: Log) {
+  	 $("#ip").removeClass("is-invalid");
+	 $("#request").removeClass("is-invalid");
+	 $("#status").removeClass("is-invalid");
+	 $("#date").removeClass("is-invalid");
+	 $("#userAgent").removeClass("is-invalid");
+
+
 	this.record = record;  
 
 	this.ip = this.record.ip;
@@ -169,7 +182,7 @@ export class LogManualComponent implements OnInit {
 		this.totalPages = data.totalPages;
 		}
 		, error => {
-			alert(error.status + ' - ' + error.message);
+			showErrorMessage(error.status + ' - ' + error.message);
 		}
 	);
    }

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { LogService } from '../log.service';
 import { Log } from '../log';
-import { Result } from '../result';
+
 
 declare var validateDateTime: any
 declare var validateIfIsEmpty: any
 declare var $: any
+declare var showErrorMessage: any
 
 @Component({
   selector: 'app-busca-log',
@@ -32,35 +33,42 @@ export class BuscaLogComponent implements OnInit {
   }
 
   search() {
-	/*
   	 $("#ip").removeClass("is-invalid");
   	 $("#startDate").removeClass("is-invalid");
-	 $("#endDate").removeClass("is-invalid");  	 
+	 $("#endDate").removeClass("is-invalid");  
+	 
+	 var hasError = false;
   
   	 if (validateIfIsEmpty(this.ip)) {
-	  	 $("#ip").addClass("is-invalid");
+		   $("#ip").addClass("is-invalid");
+		   hasError = true;
 	 }
 
   	 if (validateIfIsEmpty(this.startDate)) {
-	  	 $("#startDate").addClass("is-invalid");
+		   $("#startDate").addClass("is-invalid");
+		   hasError = true;
 	 } else {
 	  	 if (!validateDateTime(this.startDate)) {
-		  	 $("#startDate").addClass("is-invalid");
+			   $("#startDate").addClass("is-invalid");
+			   hasError = true;
 		 } 
 	 }
 
 	 if (validateIfIsEmpty(this.endDate)) {
-	  	 $("#endDate").addClass("is-invalid");
+		   $("#endDate").addClass("is-invalid");
+		   hasError = true;
 	 } else {
 		 if (!validateDateTime(this.endDate)) {
-		  	 $("#endDate").addClass("is-invalid");
+			   $("#endDate").addClass("is-invalid");
+			   hasError = true;
 		 } 
 	 } 
-	 */
 	
-	 this.totalPages = 0;
-	 this.page = 1;
-	 this.doSearch();
+	 if (!hasError) {
+		this.totalPages = 0;
+		this.page = 1;
+		this.doSearch();
+	 }
 
   }
 
@@ -87,7 +95,7 @@ export class BuscaLogComponent implements OnInit {
 		this.totalPages = data.totalPages;
 		}
 		, error => {
-		alert(error.status + ' - ' + error.message);
+			showErrorMessage(error.status + ' - ' + error.message);
 		}
 	);
    }

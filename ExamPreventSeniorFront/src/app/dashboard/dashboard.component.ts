@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LogService } from '../log.service';
 import { LogAggregation } from '../log-aggregation';
 
+declare var showErrorMessage: any
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -51,7 +53,7 @@ export class DashboardComponent implements OnInit {
 		this.totalPages = data.totalPages;
 		}
 		, error => {
-		alert(error.status + ' - ' + error.message);
+		  showErrorMessage(error.status + ' - ' + error.message);
 		}
 	);
    }

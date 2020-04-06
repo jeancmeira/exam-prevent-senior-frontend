@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 declare var validateDateTime: any
+declare var $: any
 
 @Component({
   selector: 'app-busca-log',
@@ -19,6 +20,10 @@ export class BuscaLogComponent implements OnInit {
   }
 
   search() {
-	 validateDateTime(this.startDate); 
+  	 $("#ip").removeClass("is-invalid");
+  
+  	 if (validateIfIsEmpty(this.ip)) {
+	  	 $("#ip").addClass("is-invalid");
+	 } 
   }	
 }

@@ -22,6 +22,7 @@ export class LogManualComponent implements OnInit {
   public status = '';
   public userAgent = '';
 
+  public record: Log = null;
   
   public totalPages = 0;
 
@@ -100,7 +101,15 @@ export class LogManualComponent implements OnInit {
   	$("#myModal").modal(); 
   }
   
-  onClick() {
+  update(record: Log) {
+	this.record = record;  
+
+	this.ip = this.record.ip;
+	this.date = this.record.date.toDateString();
+	this.request = this.record.request;
+	this.status = this.record.status.toString();
+	this.userAgent = this.record.userAgent;
+
   	$("#myModal").modal(); 
   }
 

@@ -10,7 +10,7 @@ export class LogService {
 
   constructor() { }
 
-  public search(ip: string, startDate: Date, endDate: Date):Observable<Result<Log>>  {
+  public search(ip: string, startDate: Date, endDate: Date, page: number):Observable<Result<Log>>  {
     const ret = new Observable<Result<Log>>((observer) => {
 
       let result = new Result<Log>();

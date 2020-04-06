@@ -51,7 +51,7 @@
 <br>  
   
   
-<div class="modal" id="myModal">
+<div class="Xmodal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -63,54 +63,59 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-
+			<form >
 			<div>
 				<div class="row">
 				  <div class="col-sm-12">
 						<div class="form-group">
-						  <label for="usr">IP:</label>
-						  <input type="text" class="form-control" id="usr">
+						  <label for="ip">IP:</label>
+						  <input type="text" class="form-control" id="ip" name="ip" [(ngModel)]="ip" maxlength="23">
+						    <div class="invalid-feedback">Favor informar esse campo.</div>
 						</div>
 				  </div>
 				</div>
 				<div class="row">
 				  <div class="col-sm-12">
 						<div class="form-group">
-						  <label for="usr">Request:</label>
-						  <input type="text" class="form-control" id="usr">
+						  <label for="request">Request:</label>
+						  <input type="text" class="form-control" id="request" name="request" [(ngModel)]="request" maxlength="100">
+						  <div class="invalid-feedback">Favor informar esse campo.</div>
 						</div>
 				  </div>
 				</div>
 				<div class="row">
 				  <div class="col-sm-6">
 						<div class="form-group">
-						  <label for="usr">Status:</label>
-						  <input type="text" placeholder="Insira um numero" class="form-control" id="usr">
+						  <label for="status">Status:</label>
+						  <input type="text" placeholder="Insira um numero" id="status" name="status" [(ngModel)]="status" class="form-control" maxlength="3">
+  						<div class="invalid-feedback">Favor informar um numero valido.</div>						  
 						</div>
 				  </div>
 				  <div class="col-sm-6">
 						<div class="form-group">
-						  <label for="usr">Data:</label>
-						  <input type="text" placeholder="dd/mm/aaaa HH:mm:ss" class="form-control" id="usr">
+						  <label for="date">Data:</label>
+						  <input type="text" placeholder="dd/mm/aaaa HH:mm:ss" id="date" name="date" [(ngModel)]="date" class="form-control" maxlength="19">
+						  <div class="invalid-feedback">Favor informar uma data valida.</div>
 						</div>
 				  </div>
 				</div>
 				<div class="row">
 				  <div class="col-sm-12">
 						<div class="form-group">
-						  <label for="usr">User Agent:</label>
-						  <input type="text" class="form-control" id="usr">
+						  <label for="userAgent">User Agent:</label>
+						  <input type="text" class="form-control" id="userAgent" name="userAgent" [(ngModel)]="userAgent" maxlength="250">
+						  <div class="invalid-feedback">Favor informar esse campo.</div>
 						</div>
 				  </div>
 				</div>
 			</div>
-
+			</form>
 
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-primary" (click)="save()">Salvar</button>
       
         <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
       </div>

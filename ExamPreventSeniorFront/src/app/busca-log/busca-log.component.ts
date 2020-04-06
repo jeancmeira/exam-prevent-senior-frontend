@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 declare var validateDateTime: any
+declare var validateIfIsEmpty: any
 declare var $: any
 
 @Component({

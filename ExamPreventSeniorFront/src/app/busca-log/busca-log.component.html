@@ -13,14 +13,16 @@
   <div class="col-sm-2"> 
 		<div class="form-group">
 		  <label for="startDate">Data Hora Inicial:</label>
-		  <input type="text" placeholder="dd/mm/aaaa HH:mm:ss" class="form-control" id="startDate" [value]="startDate" maxlength="19">
+		  <input type="text" placeholder="dd/mm/aaaa HH:mm:ss" class="form-control" id="startDate" name="startDate" [(ngModel)]="startDate"
+		  	 maxlength="19">
 		  <div class="invalid-feedback">Data invalida.</div>
 		</div>
   </div>
   <div class="col-sm-2">
 		<div class="form-group">
 		  <label for="endDate">Data Hora Final:</label>
-		  <input type="text" placeholder="dd/mm/aaaa HH:mm:ss" class="form-control" id="endDate" [value]="endDate" maxlength="19">
+		  <input type="text" placeholder="dd/mm/aaaa HH:mm:ss" class="form-control"
+		   id="endDate" id="endDate" name="endDate" [(ngModel)]="endDate" maxlength="19">
 		  <div class="invalid-feedback">Data invalida.</div>		  
 		</div>
   </div>

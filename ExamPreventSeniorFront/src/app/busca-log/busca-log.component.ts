@@ -21,9 +21,21 @@ export class BuscaLogComponent implements OnInit {
 
   search() {
   	 $("#ip").removeClass("is-invalid");
+  	 $("#startDate").removeClass("is-invalid");
+	 $("#endDate").removeClass("is-invalid");  	 
   
   	 if (validateIfIsEmpty(this.ip)) {
 	  	 $("#ip").addClass("is-invalid");
+	 }
+
+  	 if (validateIfIsEmpty(this.startDate)) {
+	  	 $("#startDate").addClass("is-invalid");
 	 } 
+
+	 if (validateIfIsEmpty(this.endDate)) {
+	  	 $("#endDate").addClass("is-invalid");
+	 } 
+	 
+	  
   }	
 }

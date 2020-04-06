@@ -74,6 +74,16 @@ export class LogManualComponent implements OnInit {
 	$("#myModal").modal("hide");
 	  
   }	
+
+  add() {
+	this.ip = "";
+	this.date = "";  	
+	this.request = "";
+	this.status = "";
+	this.userAgent = "";
+  
+  	$("#myModal").modal(); 
+  }
   
   onClick() {
   	$("#myModal").modal(); 

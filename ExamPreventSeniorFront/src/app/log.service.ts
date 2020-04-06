@@ -135,6 +135,40 @@ export class LogService {
     
   }
 
+  public delete(log: Log):Observable<boolean> {
+    const ret = new Observable<boolean>((observer) => {
+
+      observer.next(true);
+
+      return {
+        unsubscribe() {
+
+        }
+      };
+    });
+
+    return ret;
+
+    
+  }
+
+  public save(log: Log):Observable<number> {
+    const ret = new Observable<number>((observer) => {
+
+      observer.next(1);
+
+      return {
+        unsubscribe() {
+
+        }
+      };
+    });
+
+    return ret;
+
+    
+  }
+
 
  
 }

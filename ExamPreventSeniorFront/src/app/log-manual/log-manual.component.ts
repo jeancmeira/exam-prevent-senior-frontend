@@ -87,12 +87,29 @@ export class LogManualComponent implements OnInit {
 	if (hasError == true) {
 		return;
 	}
-	
-	$("#myModal").modal("hide");
+
+	this.record.ip = this.ip;
+	this.record.date = convertToDate(this.date);
+	this.record.request = this.request;
+	this.record.status = parseInt(this.status, 10);
+	this.record.userAgent = this.userAgent;
+
+
+	this.logService.save(this.record).subscribe(
+		data => {
+		  $("#myModal").modal("hide");
+  		   this.listAll();
+   
+    }
+		, error => {
+			alert(error.status + ' - ' + error.message);
+	});
 	  
   }	
 
   add() {
+	this.record = new Log();
+
 	this.ip = "";
 	this.date = "";  	
 	this.request = "";

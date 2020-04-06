@@ -96,4 +96,27 @@ function formatDateTime(d) {
 	return formatted;
 }
 
+function convertToDate(value) {
+	var parts = $.trim(value).split(" ");
+
+	var datePart = parts[0]; 
+	
+	var timePart = parts[1];
+	
+	var dateParts = datePart.split("/"); 
+	
+	var timeParts = timePart.split(":");
+	
+	var day = parseInt(dateParts[0], 10);
+	var month = parseInt(dateParts[1], 10);
+	var year = parseInt(dateParts[2], 10);
+
+	var hour = parseInt(timeParts[0], 10);
+	var minute = parseInt(timeParts[1], 10);
+	var seconds = parseInt(timeParts[2], 10);
+
+	return new Date(year, (+month-1), day, hour, minute, seconds);
+
+}
+
 

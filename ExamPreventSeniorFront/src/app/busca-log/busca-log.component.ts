@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LogService } from '../log.service';
+import { Log } from '../log';
 
 declare var validateDateTime: any
 declare var validateIfIsEmpty: any
@@ -11,16 +13,21 @@ declare var $: any
 })
 export class BuscaLogComponent implements OnInit {
 
-  public ip: string = "";
-  public startDate: string = "";  	
-  public endDate: string = "";
+  public ip = '';
+  public startDate = '';
+  public endDate = '';
 
-  constructor() { }
+  public records: Log[];
+
+  constructor(private logService: LogService) {
+
+  }
 
   ngOnInit() {
   }
 
   search() {
+	/*
   	 $("#ip").removeClass("is-invalid");
   	 $("#startDate").removeClass("is-invalid");
 	 $("#endDate").removeClass("is-invalid");  	 
@@ -44,6 +51,16 @@ export class BuscaLogComponent implements OnInit {
 		  	 $("#endDate").addClass("is-invalid");
 		 } 
 	 } 
-	  
-  }	
+	 */
+
+     this.logService.search('', new Date(), new Date()).subscribe(
+        data => {
+		  this.records = data;
+        }
+        , error => {
+            alert(error.status + ' - ' + error.message);
+        }
+     );
+
+  }
 }

@@ -49,12 +49,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>01/01/2001 08:00:00</td>
-        <td>127.0.0.1</td>
-        <td>GET /path/dassad/sadsadsa/sadsadsad/sadsadsa/sad</td>
-        <td>200</td>
-        <td>mozilla gasdusa sadghsajdhgsa sahdsajd sadhsa djsahdd</td>
+      <tr  *ngFor="let record of records">
+        <td>{{record.date}}</td>
+        <td>{{record.ip}}</td>
+        <td>{{record.request}}</td>
+        <td>{{record.status}}</td>
+        <td>{{record.userAgent}}</td>
       </tr>
     </tbody>
   </table>

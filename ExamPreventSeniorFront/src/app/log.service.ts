@@ -15,6 +15,7 @@ export class LogService {
 
       const log = new Log();
       log.id = 1;
+      log.ip = '127.10.10.3';
       log.request = 'request xxx';
       log.status = 200;
       log.userAgent = 'userAgent yyy';

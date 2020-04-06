@@ -114,6 +114,12 @@ export class LogManualComponent implements OnInit {
   	$("#myModal").modal(); 
   }
 
+  delete(record: Log) {
+	this.record = record;  
+
+	alert(this.record.id);
+  }
+
   listAll() {
 	 this.totalPages = 0;
 	 this.page = 1;

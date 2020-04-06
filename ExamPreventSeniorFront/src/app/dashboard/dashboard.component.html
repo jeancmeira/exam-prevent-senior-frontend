@@ -12,11 +12,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>127.0.0.1</td>
-        <td>10:00</td>
-        <td>mozilla gasdusa sadghsajdhgsa sahdsajd sadhsa djsahdd</td>
-        <td>10</td>
+      <tr  *ngFor="let record of records">
+        <td>{{record.ip}}</td>
+        <td>{{record.hour}}</td>
+        <td>{{record.userAgent}}</td>
+        <td>{{record.total}}</td>
       </tr>
     </tbody>
   </table>
@@ -24,10 +24,10 @@
   
  <br/> 
   
- <div class="row">
-  <div class="col-sm-1"><button class="page-link btn-block"> Anterior </button></div>
-  <div class="col-sm-1" style="text-align: center;"><span>1 de 10</span></div>
-  <div class="col-sm-1"><button class="page-link btn-block"> Proximo </button></div>
+ <div class="row" *ngIf="totalPages > 0">
+  <div class="col-sm-1"><button class="page-link btn-block" (click)="previousPage()"> Anterior </button></div>
+  <div class="col-sm-1" style="text-align: center;"><span>1 de {{totalPages}}</span></div>
+  <div class="col-sm-1"><button class="page-link btn-block" (click)="nextPage()"> Proximo </button></div>
 </div>
 
 <br/>

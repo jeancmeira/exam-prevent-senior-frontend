@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Log} from './log';
+import {LogAggregation} from './log-aggregation';
 import {Result} from './result';
 
 @Injectable({
@@ -59,6 +60,37 @@ export class LogService {
       log.userAgent = 'userAgent yyy';
       log.date = new Date();
       list.push(log);
+
+      observer.next(result);
+      observer.complete();
+
+
+      return {
+        unsubscribe() {
+
+        }
+      };
+    });
+
+    return ret;
+  }
+
+  public listAllAggregation(page: number):Observable<Result<LogAggregation>>  {
+    const ret = new Observable<Result<LogAggregation>>((observer) => {
+
+      let result = new Result<LogAggregation>();
+
+      const list = new Array<LogAggregation>();
+      result.records = list;
+      result.totalPages = 1;
+
+      const logAggregation = new LogAggregation();
+      logAggregation.ip = '127.10.10.3';
+      logAggregation.userAgent = 'userAgent yyy';
+      logAggregation.hour = 10;
+      logAggregation.total = 100;
+      
+      list.push(logAggregation);
 
       observer.next(result);
       observer.complete();

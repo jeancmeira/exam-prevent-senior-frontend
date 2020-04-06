@@ -96,6 +96,38 @@ function formatDateTime(d) {
 	return formatted;
 }
 
+function formatIsoDateTime(d) {
+	var date = d.getDate().toString();
+	var month = (d.getMonth() + 1).toString();
+	var year = d.getFullYear().toString();
+	var hour = d.getHours().toString();
+	var minute = d.getMinutes().toString();
+	var second = d.getSeconds().toString();
+	
+	if (date.length == 1) {
+		date = "0" + date;
+	}
+
+	if (month.length == 1) {
+		month = "0" + month;
+	}
+
+	if (hour.length == 1) {
+		hour = "0" + hour;
+	}
+
+	if (minute.length == 1) {
+		minute = "0" + minute;
+	}
+
+	if (second.length == 1) {
+		second = "0" + second;
+	}
+
+	var formatted = year + "-" + (month) + "-" + date + " " + hour + ":" + minute + ":" + second;
+	return formatted;
+}
+
 function convertToDate(value) {
 	var parts = $.trim(value).split(" ");
 

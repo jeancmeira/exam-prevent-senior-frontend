@@ -7,6 +7,7 @@ declare var validateDateTime: any
 declare var validateIfIsEmpty: any
 declare var $: any
 declare var showErrorMessage: any
+declare var convertToDate: any
 
 @Component({
   selector: 'app-busca-log',
@@ -72,24 +73,24 @@ export class BuscaLogComponent implements OnInit {
 
   }
 
-   previousPage(){
-	if (this.page < this.totalPages) {
-		this.page++;
-		this.doSearch();
-	}
+  nextPage(){
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.doSearch();
+    }
    }
 
-   nextPage() {
-	if (this.page > 1) {
-		this.page--;
-		this.doSearch();
-	}
+   previousPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.doSearch();
+    }
    }
 
    private doSearch() {
 		this.records = [];
 
-		this.logService.search('', new Date(), new Date(), this.page).subscribe(
+		this.logService.search(this.ip, convertToDate(this.startDate), convertToDate(this.endDate), this.page).subscribe(
 		data => {
 		this.records = data.records;
 		this.totalPages = data.totalPages;

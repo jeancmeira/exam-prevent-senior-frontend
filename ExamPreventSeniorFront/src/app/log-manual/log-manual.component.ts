@@ -168,14 +168,14 @@ export class LogManualComponent implements OnInit {
 
   }
 
-   previousPage(){
+   nextPage(){
 	if (this.page < this.totalPages) {
 		this.page++;
 		this.doSearch();
 	}
    }
 
-   nextPage() {
+   previousPage() {
 	if (this.page > 1) {
 		this.page--;
 		this.doSearch();

@@ -44,7 +44,7 @@
   
  <div class="row" *ngIf="totalPages > 0">
   <div class="col-sm-1"><button class="page-link btn-block" (click)="previousPage()"> Anterior </button></div>
-  <div class="col-sm-1" style="text-align: center;"><span>1 de {{totalPages}}</span></div>
+  <div class="col-sm-1" style="text-align: center;"><span>{{page}} de {{totalPages}}</span></div>
   <div class="col-sm-1"><button class="page-link btn-block" (click)="nextPage()"> Proximo </button></div>
 </div>
   

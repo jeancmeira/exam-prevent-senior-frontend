@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {Log} from './log';
 import {LogAggregation} from './log-aggregation';
 import {Result} from './result';
+import { HttpClient } from '@angular/common/http';
 
 declare var $: any
 
@@ -11,7 +12,7 @@ declare var $: any
 })
 export class LogService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public search(ip: string, startDate: Date, endDate: Date, page: number):Observable<Result<Log>>  {
     const ret = new Observable<Result<Log>>((observer) => {
@@ -46,35 +47,7 @@ export class LogService {
   }
 
   public listAll(page: number):Observable<Result<Log>>  {
-    const ret = new Observable<Result<Log>>((observer) => {
-
-      let result = new Result<Log>();
-
-      const list = new Array<Log>();
-      result.records = list;
-      result.totalPages = 1;
-
-      const log = new Log();
-      log.id = 1;
-      log.ip = '127.10.10.3';
-      log.request = 'request xxx';
-      log.status = 200;
-      log.userAgent = 'userAgent yyy';
-      log.date = new Date();
-      list.push(log);
-
-      observer.next(result);
-      observer.complete();
-
-
-      return {
-        unsubscribe() {
-
-        }
-      };
-    });
-
-    return ret;
+     return this.http.get<Result<Log>>('http://localhost:8080/log?page=' + page);
   }
 
   public listAllAggregation(page: number):Observable<Result<LogAggregation>>  {

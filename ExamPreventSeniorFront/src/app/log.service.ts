@@ -11,7 +11,7 @@ export class LogService {
   constructor() { }
 
   public search(ip: string, startDate: Date, endDate: Date):Observable<Result<Log>>  {
-    const ret = new Observable<Result<Log[]>>((observer) => {
+    const ret = new Observable<Result<Log>>((observer) => {
 
       let result = new Result<Log>();
 

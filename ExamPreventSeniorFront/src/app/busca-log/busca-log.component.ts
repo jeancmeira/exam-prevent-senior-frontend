@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LogService } from '../log.service';
 import { Log } from '../log';
+import { Result } from '../result';
 
 declare var validateDateTime: any
 declare var validateIfIsEmpty: any
@@ -53,14 +54,14 @@ export class BuscaLogComponent implements OnInit {
 	 } 
 	 */
 
-     this.logService.search('', new Date(), new Date()).subscribe(
-        data => {
-		  this.records = data;
-        }
-        , error => {
-            alert(error.status + ' - ' + error.message);
-        }
-     );
+    this.logService.search('', new Date(), new Date()).subscribe(
+     data => {
+       this.records = data.records;
+     }
+     , error => {
+       alert(error.status + ' - ' + error.message);
+    }
+);
 
   }
 }

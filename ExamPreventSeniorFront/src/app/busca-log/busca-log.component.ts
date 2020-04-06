@@ -11,9 +11,9 @@ declare var $: any
 })
 export class BuscaLogComponent implements OnInit {
 
-  public ip: String = "";
-  public startDate: String = "";  	
-  public endDate: String = "";
+  public ip: string = "";
+  public startDate: string = "";  	
+  public endDate: string = "";
 
   constructor() { }
 

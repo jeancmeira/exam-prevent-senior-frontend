@@ -12,11 +12,11 @@ declare var validateIfIsNumber: any
 })
 export class LogManualComponent implements OnInit {
 
-  public ip: String = "";
-  public date: String = "";  	
-  public request: String = "";
-  public status: String = "";
-  public userAgent: String = "";
+  public ip: string = "";
+  public date: string = "";  	
+  public request: string = "";
+  public status: string = "";
+  public userAgent: string = "";
 
   constructor() { }
 

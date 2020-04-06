@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {Log} from './log';
+import {Result} from './result';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,14 @@ export class LogService {
 
   constructor() { }
 
-  public search(ip: string, startDate: Date, endDate: Date):Observable<Log[]>  {
-    const result = new Observable<Log[]>((observer) => {
+  public search(ip: string, startDate: Date, endDate: Date):Observable<Result<Log>>  {
+    const ret = new Observable<Result<Log[]>>((observer) => {
+
+      let result = new Result<Log>();
+
       const list = new Array<Log>();
+      result.records = list;
+      result.totalPages = 1;
 
       const log = new Log();
       log.id = 1;
@@ -22,7 +28,7 @@ export class LogService {
       log.date = new Date();
       list.push(log);
 
-      observer.next(list);
+      observer.next(result);
       observer.complete();
 
 
@@ -33,7 +39,7 @@ export class LogService {
       };
     });
 
-    return result;
+    return ret;
   }
 
 

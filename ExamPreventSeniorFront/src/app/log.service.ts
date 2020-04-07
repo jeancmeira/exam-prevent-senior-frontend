@@ -30,8 +30,6 @@ export class LogService {
   }
 
   public addLogs(file: any):Observable<boolean> {
-
-
     const formData = new FormData();
     formData.append('file', file); 
 

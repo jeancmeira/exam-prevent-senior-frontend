@@ -5,6 +5,8 @@ import {LogAggregation} from '../model/log-aggregation';
 import {Result} from '../model/result';
 import { HttpClient } from '@angular/common/http';
 
+import { environment } from '../../environments/environment'; 
+
 declare var formatIsoDateTime: any;
 
 
@@ -16,28 +18,28 @@ export class LogService {
   constructor(private http: HttpClient) { }
 
   public search(ip: string, startDate: Date, endDate: Date, page: number): Observable<Result<Log>>  {
-    return this.http.get<Result<Log>>('http://localhost:8080/log?page=' + page + '&ip='
+    return this.http.get<Result<Log>>(environment.endpointServer + '/log?page=' + page + '&ip='
           + ip + '&startDate=' + formatIsoDateTime(startDate)
           + '&endDate=' + formatIsoDateTime(endDate));
   }
 
   public listAll(page: number): Observable<Result<Log>>  {
-     return this.http.get<Result<Log>>('http://localhost:8080/log?page=' + page);
+     return this.http.get<Result<Log>>(environment.endpointServer + '/log?page=' + page);
   }
 
   public listAllAggregation(page: number): Observable<Result<LogAggregation>>  {
-    return this.http.get<Result<LogAggregation>>('http://localhost:8080/log-aggregation?page=' + page);
+    return this.http.get<Result<LogAggregation>>(environment.endpointServer + '/log-aggregation?page=' + page);
   }
 
   public addLogs(file: any): Observable<boolean> {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.http.post<boolean>('http://localhost:8080/log-upload', formData);
+    return this.http.post<boolean>(environment.endpointServer + '/log-upload', formData);
   }
 
   public delete(log: Log): Observable<boolean> {
-    return this.http.delete<boolean>('http://localhost:8080/log/' + log.id);
+    return this.http.delete<boolean>(environment.endpointServer + '/log/' + log.id);
   }
 
   public save(log: Log): Observable<number> {
@@ -50,7 +52,7 @@ export class LogService {
           , status: log.status
       };
 
-      return this.http.post<number>('http://localhost:8080/log', logData);
+      return this.http.post<number>(environment.endpointServer + '/log', logData);
   }
 
 

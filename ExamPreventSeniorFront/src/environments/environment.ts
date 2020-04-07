@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false
+    , endpointServer: 'http://localhost:8080'
 };
 
 /*

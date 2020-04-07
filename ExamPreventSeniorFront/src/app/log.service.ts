@@ -57,37 +57,20 @@ export class LogService {
   }
 
   public delete(log: Log):Observable<boolean> {
-    const ret = new Observable<boolean>((observer) => {
-
-      observer.next(true);
-
-      return {
-        unsubscribe() {
-
-        }
-      };
-    });
-
-    return ret;
-
-    
+    return this.http.delete<boolean>('http://localhost:8080/log/' + log.id);
   }
 
   public save(log: Log):Observable<number> {
-    const ret = new Observable<number>((observer) => {
-
-      observer.next(1);
-
-      return {
-        unsubscribe() {
-
-        }
+      const logData = {
+          id: log.id
+          ,ip: log.ip
+          ,date: formatIsoDateTime(log.date)
+          ,request: log.request
+          ,userAgent: log.userAgent
+          ,status: log.status 
       };
-    });
 
-    return ret;
-
-    
+      return this.http.post<number>('http://localhost:8080/log', logData);
   }
 
 

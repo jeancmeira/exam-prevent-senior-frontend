@@ -3,14 +3,14 @@ import { LogService } from '../log.service';
 import { Log } from '../log';
 
 
-declare var validateDateTime: any
-declare var validateIfIsEmpty: any
-declare var $: any
-declare var showErrorMessage: any
-declare var showMessage: any
-declare var convertToDate: any
-declare var showWaitingMessage: any
-declare var closeWaitingMessage: any
+declare var validateDateTime: any;
+declare var validateIfIsEmpty: any;
+declare var $: any;
+declare var showErrorMessage: any;
+declare var showMessage: any;
+declare var convertToDate: any;
+declare var showWaitingMessage: any;
+declare var closeWaitingMessage: any;
 
 
 @Component({
@@ -38,46 +38,41 @@ export class BuscaLogComponent implements OnInit {
   }
 
   search() {
-  	 $("#ip").removeClass("is-invalid");
-  	 $("#startDate").removeClass("is-invalid");
-	 $("#endDate").removeClass("is-invalid");  
-	 
-	 var hasError = false;
-  
-  	 if (validateIfIsEmpty(this.ip)) {
-		   $("#ip").addClass("is-invalid");
-		   hasError = true;
-	 }
+    $('#ip').removeClass('is-invalid');
+    $('#startDate').removeClass('is-invalid');
+    $('#endDate').removeClass('is-invalid');
+    let hasError = false;
+    if (validateIfIsEmpty(this.ip)) {
+      $('#ip').addClass('is-invalid');
+      hasError = true;
+    }
+    if (validateIfIsEmpty(this.startDate)) {
+      $('#startDate').addClass('is-invalid');
+      hasError = true;
+    } else {
+      if (!validateDateTime(this.startDate)) {
+        $('#startDate').addClass('is-invalid');
+        hasError = true;
+      }
+   }
 
-  	 if (validateIfIsEmpty(this.startDate)) {
-		   $("#startDate").addClass("is-invalid");
-		   hasError = true;
-	 } else {
-	  	 if (!validateDateTime(this.startDate)) {
-			   $("#startDate").addClass("is-invalid");
-			   hasError = true;
-		 } 
-	 }
-
-	 if (validateIfIsEmpty(this.endDate)) {
-		   $("#endDate").addClass("is-invalid");
-		   hasError = true;
-	 } else {
-		 if (!validateDateTime(this.endDate)) {
-			   $("#endDate").addClass("is-invalid");
-			   hasError = true;
-		 } 
-	 } 
-	
-	 if (!hasError) {
-		this.totalPages = 0;
-		this.page = 1;
-		this.doSearch();
-	 }
-
+    if (validateIfIsEmpty(this.endDate)) {
+      $('#endDate').addClass('is-invalid');
+      hasError = true;
+    } else {
+       if (!validateDateTime(this.endDate)) {
+         $('#endDate').addClass('is-invalid');
+         hasError = true;
+       }
+    }
+    if (!hasError) {
+      this.totalPages = 0;
+      this.page = 1;
+      this.doSearch();
+    }
   }
 
-  nextPage(){
+  nextPage() {
     if (this.page < this.totalPages) {
       this.page++;
       this.doSearch();
@@ -92,30 +87,30 @@ export class BuscaLogComponent implements OnInit {
    }
 
    private doSearch() {
-    	showWaitingMessage();
+    showWaitingMessage();
 
-		this.records = [];
+    this.records = [];
 
-		this.logService.search(this.ip, convertToDate(this.startDate), convertToDate(this.endDate), this.page).subscribe(
-		data => {
-			closeWaitingMessage();
+    this.logService.search(this.ip, convertToDate(this.startDate), convertToDate(this.endDate), this.page).subscribe(
+        data => {
+            closeWaitingMessage();
 
-			this.records = data.records;
-			this.totalPages = data.totalPages;
+            this.records = data.records;
+            this.totalPages = data.totalPages;
 
-			if (this.records.length == 0) {
-				showMessage('Nao existem registros com esse filtro.');
-			}
-		}
-		, error => {
-			closeWaitingMessage();
+            if (this.records.length === 0) {
+              showMessage('Nao existem registros com esse filtro.');
+            }
+        }
+        , error => {
+            closeWaitingMessage();
 
-			if (error.status === 500) {
-				showErrorMessage(error.error.message);
-			} else {
-				showErrorMessage(error.status + ' - ' + error.message); 
-			}
-		}
-	);
+            if (error.status === 500) {
+              showErrorMessage(error.error.message);
+            } else {
+              showErrorMessage(error.status + ' - ' + error.message);
+            }
+         }
+    );
    }
 }

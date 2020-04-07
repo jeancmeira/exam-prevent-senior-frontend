@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { LogService } from '../log.service';
 import { LogAggregation } from '../log-aggregation';
 
-declare var showErrorMessage: any
-declare var showWaitingMessage: any
-declare var closeWaitingMessage: any
+declare var showErrorMessage: any;
+declare var showWaitingMessage: any;
+declare var closeWaitingMessage: any;
 
 
 @Component({
@@ -26,14 +26,13 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-	 this.totalPages = 0;
-	 this.page = 1;
-	 this.doSearch();
-
+    this.totalPages = 0;
+    this.page = 1;
+    this.doSearch();
   }
 
 
-  nextPage(){
+  nextPage() {
     if (this.page < this.totalPages) {
       this.page++;
       this.doSearch();
@@ -50,26 +49,25 @@ export class DashboardComponent implements OnInit {
    private doSearch() {
      showWaitingMessage();
 
-		this.records = [];
+     this.records = [];
 
-		this.logService.listAllAggregation(this.page).subscribe(
-		data => {
+     this.logService.listAllAggregation(this.page).subscribe(
+      data => {
         closeWaitingMessage();
-        
         this.records = data.records;
         this.totalPages = data.totalPages;
-		}
-		, error => {
+      }
+      , error => {
         closeWaitingMessage();
 
         if (error.status === 500) {
           showErrorMessage(error.error.message);
         } else {
-          showErrorMessage(error.status + ' - ' + error.message); 
+          showErrorMessage(error.status + ' - ' + error.message);
         }
 
-		}
-	);
+     }
+    );
    }
 
 

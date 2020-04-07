@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { LogService } from '../log.service';
 
-declare var $: any
-declare var showMessage: any
-declare var showErrorMessage: any
-declare var showWaitingMessage: any
-declare var closeWaitingMessage: any
+declare var $: any;
+declare var showMessage: any;
+declare var showErrorMessage: any;
+declare var showWaitingMessage: any;
+declare var closeWaitingMessage: any;
 
 
 @Component({
@@ -20,40 +20,42 @@ export class LogArquivoComponent implements OnInit {
   }
 
   public send() {
-    if ($('input[type=file]')[0].files.length == 0) {
+    if ($('input[type=file]')[0].files.length === 0) {
         showErrorMessage('Favor informar arquivo.');
-        return;      
+        return;
     }
 
     showWaitingMessage();
 
-    let file = $('input[type=file]')[0].files[0];
+    const file = $('input[type=file]')[0].files[0];
 
-		this.logService.addLogs(file).subscribe(
-		data => {
-      closeWaitingMessage();
+    this.logService.addLogs(file).subscribe(
+      () => {
+       closeWaitingMessage();
 
-     showMessage('Arquivo enviado com sucesso.');   
-    }
-		, error => {
+       showMessage('Arquivo enviado com sucesso.');
+     }
+     , error => {
         closeWaitingMessage();
 
         if (error.status === 500) {
           showErrorMessage(error.error.message);
         } else {
-          showErrorMessage(error.status + ' - ' + error.message); 
+          showErrorMessage(error.status + ' - ' + error.message);
         }
 
-		});
+    }
+  );
 
 
   }
 
   ngOnInit() {
-	$(".custom-file-input").on("change", function() {
-	  var fileName = $(this).val().toString();
-	  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-	});
+    $('.custom-file-input').on('change', function() {
+      const fileName = $(this).val().toString();
+      $(this).siblings('.custom-file-label').addClass('selected')
+        .html(fileName);
+      });
   }
 
 }

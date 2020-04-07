@@ -33,7 +33,7 @@ export class LogArquivoComponent implements OnInit {
 		data => {
       closeWaitingMessage();
 
-      showMessage('Arquivo enviado com sucesso.');   
+     showMessage('Arquivo enviado com sucesso.');   
     }
 		, error => {
         closeWaitingMessage();

@@ -4,6 +4,9 @@ import { LogService } from '../log.service';
 declare var $: any
 declare var showMessage: any
 declare var showErrorMessage: any
+declare var showWaitingMessage: any
+declare var closeWaitingMessage: any
+
 
 @Component({
   selector: 'app-log-arquivo',
@@ -22,13 +25,19 @@ export class LogArquivoComponent implements OnInit {
         return;      
     }
 
+    showWaitingMessage();
+
     let file = $('input[type=file]')[0].files[0];
 
 		this.logService.addLogs(file).subscribe(
 		data => {
+      closeWaitingMessage();
+
       showMessage('Arquivo enviado com sucesso.');   
     }
 		, error => {
+        closeWaitingMessage();
+
         if (error.status === 500) {
           showErrorMessage(error.error.message);
         } else {

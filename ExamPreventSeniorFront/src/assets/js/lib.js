@@ -181,6 +181,18 @@ function showMessage(message) {
  $("#modalMessage").modal();
 }
 
+function showWaitingMessage() {
+ $("#modalWaiting").modal({
+      show:true,
+      keyboard: false,
+      backdrop: 'static'
+    });
+}
+
+function closeWaitingMessage() {
+ $("#modalWaiting").modal('hide');
+}
+
 function showErrorMessage(message) {
  $("#divMessage").removeClass("alert-success");
  $("#divMessage").addClass("alert-danger");

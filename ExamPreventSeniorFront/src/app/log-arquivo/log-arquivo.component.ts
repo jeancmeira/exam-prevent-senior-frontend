@@ -29,7 +29,12 @@ export class LogArquivoComponent implements OnInit {
       showMessage('Arquivo enviado com sucesso.');   
     }
 		, error => {
-			showErrorMessage(error.status + ' - ' + error.message);
+        if (error.status === 500) {
+          showErrorMessage(error.error.message);
+        } else {
+          showErrorMessage(error.status + ' - ' + error.message); 
+        }
+
 		});
 
 

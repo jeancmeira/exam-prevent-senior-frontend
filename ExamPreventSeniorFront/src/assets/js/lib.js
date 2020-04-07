@@ -182,6 +182,7 @@ function showMessage(message) {
 }
 
 function showWaitingMessage() {
+$("#modalWaiting").css('z-index', 9999);
  $("#modalWaiting").modal({
       show:true,
       keyboard: false,

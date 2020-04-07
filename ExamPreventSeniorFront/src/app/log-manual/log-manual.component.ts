@@ -11,6 +11,9 @@ declare var formatDateTime: any
 declare var convertToDate: any
 declare var showErrorMessage: any
 declare var convertToIsoDate: any
+declare var showWaitingMessage: any
+declare var closeWaitingMessage: any
+
 
 @Component({
   selector: 'app-log-manual',
@@ -96,18 +99,23 @@ export class LogManualComponent implements OnInit {
 	this.record.status = parseInt(this.status, 10);
 	this.record.userAgent = this.userAgent;
 
+	showWaitingMessage();
 
 	this.logService.save(this.record).subscribe(
 		data => {
+		  closeWaitingMessage();
+
 		  $("#myModal").modal("hide");
   		   this.doSearch();
    
     }
 		, error => {
+			closeWaitingMessage();
+
 			if (error.status === 500) {
-			showErrorMessage(error.error.message);
+				showErrorMessage(error.error.message);
 			} else {
-			showErrorMessage(error.status + ' - ' + error.message); 
+				showErrorMessage(error.status + ' - ' + error.message); 
 			}
 
 	});
@@ -154,8 +162,12 @@ export class LogManualComponent implements OnInit {
   delete(record: Log) {
 	this.record = record;  
 
+	showWaitingMessage();
+
 	this.logService.delete(this.record).subscribe(
 		data => {
+		   closeWaitingMessage();
+
 		  $("#myModal").modal("hide");
   		   this.doSearch();
    
@@ -195,16 +207,22 @@ export class LogManualComponent implements OnInit {
    private doSearch() {
 		this.records = [];
 
+		showWaitingMessage();
+
 		this.logService.listAll(this.page).subscribe(
-		data => {
-		this.records = data.records;
-		this.totalPages = data.totalPages;
+			data => {
+			closeWaitingMessage();
+
+			this.records = data.records;
+			this.totalPages = data.totalPages;
 		}
 		, error => {
+			closeWaitingMessage();
+			
 			if (error.status === 500) {
-			showErrorMessage(error.error.message);
+				showErrorMessage(error.error.message);
 			} else {
-			showErrorMessage(error.status + ' - ' + error.message); 
+				showErrorMessage(error.status + ' - ' + error.message); 
 			}
 
 		}

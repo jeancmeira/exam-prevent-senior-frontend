@@ -3,6 +3,9 @@ import { LogService } from '../log.service';
 import { LogAggregation } from '../log-aggregation';
 
 declare var showErrorMessage: any
+declare var showWaitingMessage: any
+declare var closeWaitingMessage: any
+
 
 @Component({
   selector: 'app-dashboard',
@@ -45,14 +48,20 @@ export class DashboardComponent implements OnInit {
    }
 
    private doSearch() {
+     showWaitingMessage();
+
 		this.records = [];
 
 		this.logService.listAllAggregation(this.page).subscribe(
 		data => {
-		this.records = data.records;
-		this.totalPages = data.totalPages;
+        closeWaitingMessage();
+        
+        this.records = data.records;
+        this.totalPages = data.totalPages;
 		}
 		, error => {
+        closeWaitingMessage();
+
         if (error.status === 500) {
           showErrorMessage(error.error.message);
         } else {

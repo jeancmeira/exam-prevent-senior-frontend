@@ -9,6 +9,9 @@ declare var $: any
 declare var showErrorMessage: any
 declare var showMessage: any
 declare var convertToDate: any
+declare var showWaitingMessage: any
+declare var closeWaitingMessage: any
+
 
 @Component({
   selector: 'app-busca-log',
@@ -89,10 +92,14 @@ export class BuscaLogComponent implements OnInit {
    }
 
    private doSearch() {
+    	showWaitingMessage();
+
 		this.records = [];
 
 		this.logService.search(this.ip, convertToDate(this.startDate), convertToDate(this.endDate), this.page).subscribe(
 		data => {
+			closeWaitingMessage();
+
 			this.records = data.records;
 			this.totalPages = data.totalPages;
 
@@ -101,6 +108,8 @@ export class BuscaLogComponent implements OnInit {
 			}
 		}
 		, error => {
+			closeWaitingMessage();
+
 			if (error.status === 500) {
 				showErrorMessage(error.error.message);
 			} else {

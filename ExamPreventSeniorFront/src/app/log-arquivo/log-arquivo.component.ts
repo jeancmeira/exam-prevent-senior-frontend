@@ -24,7 +24,7 @@ export class LogArquivoComponent implements OnInit {
 
     let file = $('input[type=file]')[0].files[0];
 
-		this.logService.listAll(file).subscribe(
+		this.logService.addLogs(file).subscribe(
 		data => {
       showMessage('Arquivo enviado com sucesso.');   
     }

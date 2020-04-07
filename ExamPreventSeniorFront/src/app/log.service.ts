@@ -30,30 +30,12 @@ export class LogService {
   }
 
   public addLogs(file: any):Observable<boolean> {
-    var formData = new FormData();
-    formData.append('file', file);
 
-    /*
-     this.httpClient.post<any>(this.SERVER_URL, formData).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
-    );
-    */
 
-    const ret = new Observable<boolean>((observer) => {
+    const formData = new FormData();
+    formData.append('file', file); 
 
-      observer.next(true);
-
-      return {
-        unsubscribe() {
-
-        }
-      };
-    });
-
-    return ret;
-
-    
+    return this.http.post<boolean>('http://localhost:8080/log-upload', formData);
   }
 
   public delete(log: Log):Observable<boolean> {

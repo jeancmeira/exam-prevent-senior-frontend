@@ -16,13 +16,9 @@ export class LogService {
   constructor(private http: HttpClient) { }
 
   public search(ip: string, startDate: Date, endDate: Date, page: number):Observable<Result<Log>>  {
-    //return this.http.get<Result<Log>>('http://localhost:8080/log?page=' + page + '&ip=' 
-      //    + ip + '&startDate=' + formatIsoDateTime(startDate)
-        //  + '&endDate=' + formatIsoDateTime(endDate));
     return this.http.get<Result<Log>>('http://localhost:8080/log?page=' + page + '&ip=' 
-          + ip + '&XstartDate=' + formatIsoDateTime(startDate)
+          + ip + '&startDate=' + formatIsoDateTime(startDate)
           + '&endDate=' + formatIsoDateTime(endDate));
-
   }
 
   public listAll(page: number):Observable<Result<Log>>  {

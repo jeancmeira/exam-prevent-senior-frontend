@@ -7,6 +7,7 @@ declare var validateDateTime: any
 declare var validateIfIsEmpty: any
 declare var $: any
 declare var showErrorMessage: any
+declare var showMessage: any
 declare var convertToDate: any
 
 @Component({
@@ -92,8 +93,12 @@ export class BuscaLogComponent implements OnInit {
 
 		this.logService.search(this.ip, convertToDate(this.startDate), convertToDate(this.endDate), this.page).subscribe(
 		data => {
-		this.records = data.records;
-		this.totalPages = data.totalPages;
+			this.records = data.records;
+			this.totalPages = data.totalPages;
+
+			if (this.records.length == 0) {
+				showMessage('Nao existem registros com esse filtro.');
+			}
 		}
 		, error => {
 			if (error.status === 500) {

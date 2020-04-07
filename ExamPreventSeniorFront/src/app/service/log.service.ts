@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import {Log} from './log';
-import {LogAggregation} from './log-aggregation';
-import {Result} from './result';
+import {Log} from '../model/log';
+import {LogAggregation} from '../model/log-aggregation';
+import {Result} from '../model/result';
 import { HttpClient } from '@angular/common/http';
 
 declare var formatIsoDateTime: any;

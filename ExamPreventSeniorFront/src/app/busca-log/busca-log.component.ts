@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LogService } from '../log.service';
-import { Log } from '../log';
+import { LogService } from '../service/log.service';
+import { Log } from '../model/log';
 
 
 declare var validateDateTime: any;

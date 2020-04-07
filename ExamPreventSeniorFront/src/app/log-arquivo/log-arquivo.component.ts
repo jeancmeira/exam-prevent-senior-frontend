@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LogService } from '../log.service';
+import { LogService } from '../service/log.service';
 
 declare var $: any;
 declare var showMessage: any;

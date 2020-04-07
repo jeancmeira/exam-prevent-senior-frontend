@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LogService } from '../log.service';
-import { LogAggregation } from '../log-aggregation';
+import { LogService } from '../service/log.service';
+import { LogAggregation } from '../model/log-aggregation';
 
 declare var showErrorMessage: any;
 declare var showWaitingMessage: any;

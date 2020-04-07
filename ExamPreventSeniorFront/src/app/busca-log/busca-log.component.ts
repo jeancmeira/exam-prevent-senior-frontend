@@ -96,7 +96,11 @@ export class BuscaLogComponent implements OnInit {
 		this.totalPages = data.totalPages;
 		}
 		, error => {
-			showErrorMessage(error.status + ' - ' + error.message);
+			if (error.status === 500) {
+				showErrorMessage(error.error.message);
+			} else {
+				showErrorMessage(error.status + ' - ' + error.message); 
+			}
 		}
 	);
    }

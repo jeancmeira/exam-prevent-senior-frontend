@@ -185,19 +185,7 @@ function showErrorMessage(message) {
  $("#divMessage").removeClass("alert-success");
  $("#divMessage").addClass("alert-danger");
  $("#divMessage").html(message);
- 
-  $('.modal').on('show.bs.modal', function(){
-   var modS = $('.modal').not($(this)),
-       modZ = 0;
-   modS.each(function(){
-      var zIdx = $(this).css('z-index');
-      if(zIdx >= modZ){
-         modZ = parseInt(zIdx)+1;
-      }
-   });
-   $(this).css('z-index', modZ);
-});
- 
+ $("#modalMessage").css('z-index', 9999);
  $("#modalMessage").modal();
 }
 
